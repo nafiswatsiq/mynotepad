@@ -1,0 +1,75 @@
+-- phpMyAdmin SQL Dump
+-- version 4.9.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: sql306.epizy.com
+-- Waktu pembuatan: 21 Okt 2021 pada 16.25
+-- Versi server: 5.7.35-38
+-- Versi PHP: 7.2.22
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `epiz_29414174_notepad`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `data_note`
+--
+
+CREATE TABLE `data_note` (
+  `id` int(11) NOT NULL,
+  `id_note` varchar(50) NOT NULL,
+  `id_user` varchar(50) NOT NULL,
+  `title` text NOT NULL,
+  `content` text NOT NULL,
+  `encrypt` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `data_note`
+--
+
+INSERT INTO `data_note` (`id`, `id_note`, `id_user`, `title`, `content`, `encrypt`) VALUES
+(56, 'xQeeHAd', 'ehJdyeV', 'Email', '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', 1),
+(65, 'PC3Nsyt', 'ehJdyeV', 'icon animasi', '<p>https://useanimations.com/</p><p>Clip-path: polygon</p>', 0),
+(57, 'AW3ShsK', 'ehJdyeV', 'acc trade', 'hTp5P2aNOuIdZQOWWlq10Ol6rOun1o0t1DGHYoWZ8d8Ojy321M0T5U/6wwx9nVCLeee+fwDebogg9NAD/6l3kMt1N/YzZv0dsMPm8XeBbUQNVygIL6Y7e03mYJMwxY1bNLAJhNRko57VlYr27JDkoRz6c+GEh2lwHUJGkd93HyXXyu9BnxhxDn0T57DDFt4W4tJJE5R0ouGNlOM8BQ3HxhKRFxKnI2dqyu3LJiAlKAmpOHKHN537BD2ayD7Le1McBYc7E0ag8G6T6bzAGkuwkdZ+lsnPODE/b4vKK0n2LCiGoUtU2mYZnttS2D50cyYlBSt6OyMnBLBPONrsWoh3yohwTa60WiUR9MHhiSPkJqrXjrO0X1tX+zuHkvVq', 1),
+(78, 'Jh2pgzJ', 'ehJdyeV', 'Cpanel', '<p><a href=\"https://databases-auth.000webhost.com/\" target=\"_blank\">https://databases-auth.000webhost.com/</a><a href=\"https://databases-auth.000webhost.com/\" target=\"_blank\"></a>&nbsp;|&nbsp;id17285739_data_sisexy |&nbsp;D&gt;padM(|om}]$(7K</p><p>Byethost</p><p>kit457@ruru.be</p><p>admin123.</p><p><br></p><p>Control panel username:<span style=\"white-space:pre\">	</span>b7_28983871</p><p>Control panel password:<span style=\"white-space:pre\">	</span>admin123.</p><p>Control panel URL:<span style=\"white-space:pre\">	</span><a href=\"cpanel.byethost7.com\" target=\"_blank\">cpanel.byethost7.com</a></p><p>MySQL username<span style=\"white-space:pre\">	</span>b7_28983871</p><p>MySQL password:<span style=\"white-space:pre\">	</span>admin123.</p><p>MySQL hostname:<span style=\"white-space:pre\">	</span>sql312.byethost7.com</p><p>FTP username:<span style=\"white-space:pre\">	</span>b7_28983871</p><p>FTP password:<span style=\"white-space:pre\">	</span>admin123.</p><p>FTP host name:<span style=\"white-space:pre\">	</span>ftp.byethost7.com</p><p>Your Website URL:<span style=\"white-space:pre\">	</span>http://sisexy.byethost7.com</p><p><br></p><p>Control panel username: b33_28301791<span style=\"white-space:pre\">	</span></p><p>Control panel password: admin123.<span style=\"white-space:pre\">	</span></p><p>Control panel URL: http://cpanel.byethost33.com/<span style=\"white-space:pre\">	</span></p><p>MySQL username<span style=\"white-space:pre\">	</span>b33_28301791</p><p>MySQL password:<span style=\"white-space:pre\">	</span>**********</p><p>MySQL hostname:<span style=\"white-space:pre\">	</span>sql203.byethost33.com</p><p>FTP username:<span style=\"white-space:pre\">	</span>b33_28301791</p><p>FTP password:<span style=\"white-space:pre\">	</span>**********</p><p>FTP host name:<span style=\"white-space:pre\">	</span>ftp.byethost33.com</p><p>Your Website URL:<span style=\"white-space:pre\">	</span>http://nwp-store.byethost33.com</p><p><br></p><p><br></p><p>infinityfree</p><p>email: tarrigale@tapi.re</p><p>pass: tarrigale</p><p><br></p><p>email: watsiqnafis@gmail.com</p><p>pass:&nbsp;<span style=\"background-color: var(--dark-1); font-size: 1rem;\">watsiqnafis</span></p><p><br></p><p><span style=\"background-color: var(--dark-1); font-size: 1rem;\">email:</span><span style=\"background-color: var(--dark-1); font-size: 1rem;\">&nbsp;</span>musringatun021@gmail.com<br></p><p>pass:&nbsp;<span style=\"background-color: var(--dark-1); font-size: 1rem;\">musringatun021</span></p><p><span style=\"font-size: 1rem; background-color: var(--dark-1);\"><br></span><br></p><p>https://cpanel.epizy.com/</p><p>Username<span style=\"white-space:pre\">	</span>epiz_28301690</p><p>Password</p><p>foQEOe1bca</p><p>Status<span style=\"white-space:pre\">	</span>Active</p><p>Label<span style=\"white-space:pre\">	</span>Website for nwp-store.epizy.com</p><p>Main Domain<span style=\"white-space:pre\">	</span>ywdvxixr.epizy.com</p><p>IP Address<span style=\"white-space:pre\">	</span>185.27.134.112</p><p>Hosting Volume<span style=\"white-space:pre\">	</span>vol9_5</p><p>Created on<span style=\"white-space:pre\">	</span>2021-04-03</p><p>MySQL Details</p><p>MySQL Username<span style=\"white-space:pre\">	</span>epiz_28301690</p><p>MySQL Password</p><p>foQEOe1bca</p><p>MySQL Hostname<span style=\"white-space:pre\">	</span>sql203.epizy.com</p><p>MySQL Port (optional)<span style=\"white-space:pre\">	</span>3306</p><p>Database Name<span style=\"white-space:pre\">	</span>epiz_28301690_XXX</p><p>================================================================</p><p>Account Details</p><p>Username<span style=\"white-space:pre\">	</span>epiz_28558472</p><p>Password</p><p>znUDO9u825JsrE</p><p>Status<span style=\"white-space:pre\">	</span>Pending Creation</p><p>Label<span style=\"white-space:pre\">	</span>Website for sxxx.rf.gd</p><p>Main Domain<span style=\"white-space:pre\">	</span>4k264mq8.epizy.com</p><p>IP Address<span style=\"white-space:pre\">	</span>-</p><p>Hosting Volume<span style=\"white-space:pre\">	</span>-</p><p>Created on<span style=\"white-space:pre\">	</span>2021-05-06</p><p>MySQL Details</p><p>MySQL Username<span style=\"white-space:pre\">	</span>epiz_28558472</p><p>MySQL Password</p><p>znUDO9u825JsrE</p><p>MySQL Hostname<span style=\"white-space:pre\">	</span>sqlXXX.epizy.com</p><p>(check the control panel)</p><p>MySQL Port (optional)<span style=\"white-space:pre\">	</span>3306</p><p>Database Name<span style=\"white-space:pre\">	</span>epiz_28558472_XXX</p><p>(create this in the control panel)</p><p>FTP Username<span style=\"white-space:pre\">	</span>epiz_28558472</p><p>FTP Password</p><p>znUDO9u825JsrE</p><p>FTP Hostname<span style=\"white-space:pre\">	</span>ftpupload.net</p><p>FTP Port (optional)<span style=\"white-space:pre\">	</span>21</p><p>=====================================================================</p><p>Account Details</p><p>Username<span style=\"white-space:pre\">	</span>epiz_28660480</p><p>Password&nbsp; &nbsp; &nbsp; &nbsp; PyiEAUNeKE</p><p>Status<span style=\"white-space:pre\">	</span>Pending Creation</p><p>Label<span style=\"white-space:pre\">	</span>Website for sxxx.epizy.com</p><p>Main Domain<span style=\"white-space:pre\">	</span>duu08952.epizy.com</p><p>IP Address<span style=\"white-space:pre\">	</span>-</p><p>Hosting Volume<span style=\"white-space:pre\">	</span>-</p><p>Created on<span style=\"white-space:pre\">	</span>2021-05-19</p><p>MySQL Details</p><p>MySQL Username<span style=\"white-space:pre\">	</span>epiz_28660480</p><p>MySQL Password&nbsp; PyiEAUNeKE</p><p>MySQL Hostname<span style=\"white-space:pre\">	</span>sqlXXX.epizy.com</p><p>(check the control panel)</p><p>MySQL Port (optional)<span style=\"white-space:pre\">	</span>3306</p><p>Database Name<span style=\"white-space:pre\">	</span>epiz_28660480_XXX</p><p>(create this in the control panel)</p><p>=============================================================</p><p>Username<span style=\"white-space:pre\">	</span>epiz_28667975</p><p>Password</p><p>g2gStJae8xNb</p><p>Status<span style=\"white-space:pre\">	</span>Pending Creation</p><p>Label<span style=\"white-space:pre\">	</span>Website for sxxx.great-site.net</p><p>Main Domain<span style=\"white-space:pre\">	</span>wkouhegm.epizy.com</p><p>IP Address<span style=\"white-space:pre\">	</span>-</p><p>Hosting Volume<span style=\"white-space:pre\">	</span>-</p><p>Created on<span style=\"white-space:pre\">	</span>2021-05-20</p><p>MySQL Details</p><p>MySQL Username<span style=\"white-space:pre\">	</span>epiz_28667975</p><p>MySQL Password</p><p>************</p><p>MySQL Hostname<span style=\"white-space:pre\">	</span>sqlXXX.epizy.com</p><p>(check the control panel)</p><p>MySQL Port (optional)<span style=\"white-space:pre\">	</span>3306</p><p>Database Name<span style=\"white-space:pre\">	</span>epiz_28667975_XXX</p>', 0),
+(73, 'Inz2k16', 'ehJdyeV', 'Mini world', '<p>175088575 admin123.</p>', 0),
+(76, 'OA5q8mF', 'ehJdyeV', 'All note', 'hTp5T2jKO/5YTlvAU3qzwf4l8f7jitx0mGDZNdfCr4pdknrT09ZcolO1xAw7zXiCbPKDZQDUJJ5/oOAEqtYO4LkCKfk3ObMK6+S+oV6GcwUuWX5XE6Aub1uudZwS7rkfBLQIjoY//cuGiN3R2t+5owGif/eLumloHWJdmNp8QoMSgqFYzQswAz9Ht/vNEsJT94YUBsx18LfFguFxAw2YnEeGQD6Lcy10gP/QdwEjIQaoNliNbZXLWSybwS2FMg1JXJhuRgH3pS3M5rOBESLxkdYsgs3VYXpAQILfJHamc3DMsk9Iu3dBy9gb2Cd1bzt4RH87KntyB857MMnzU9Q06IAiQpi1S3pUoJWjoh6YauPbjazpKS8SunrIh6U1t8gjfRozhItaiRrG6kI36DFtbZuElna6Pem5LzzPQ1yiWSmW03B9jn76prX3UV16BhVL2p6zBklMe+92KbYJvOilGyPiVocCtFs3wc0NX639X6/tGWWjnAtceF9fM4kwi2LqnpuNcO9ZSRIy6M4rHRYbPh52n4LCJHzPJ7EbVo9yPz5AxfTzSLjyNd7ydHOyTG7sllDYfJYW8ndOwA8t6x8Dz6Mz7VAvwOvOfPXLtno3QBr2fi8XjlUK1FK68wUt4q7EDlq48uyKuQ79fMt002kkD+S3mv1O7P4dDO6AnF8STziC+JdcAbSvdUHieL6r95oanQDhMS35lyG4EjzvUCfmK5WOLqcf3SpaM6Nql1MAre7fAa/Ob5kkpFrYt+z6Akrqq5CuSHc7leNrbbuYDls9RiPoKqoK3vrscCWI2SKEyV/vWf4JoY6Fg/rsojQkOf5JD4JvrjjS5CZ6CN0us15o2pjrHLYmSF6u77HkE+3OV4E334L2IIp72SJ19Yl+rsH/RmvQHQi4oOOVN0aBPoZ4zyV+Gd2zsv147dKwIJYwN7wANRyq62Qflj08aQM6+JvRbBh3x5aP570eUn2atDYql/A/E7yV/6CcOD3W36AgrDo+095nuZ1L8XMQEc+BqJppoXVVS/E++ni34FWU16GM5gUJr2OI2FVo03XIvesTJmQcMije8IR8slU0/LsxB+4X/FyWX3R1PAkWoLHFNWmyGQ6rxxgvohovXTFOKKDOQlfuzb6ZUy1MVL2x0Idj0a1Wn8TQKzZCdK1Dh9zdj7tx5WRvbLGUKM8DdV5IkGSvJDQPDb180YcldO2zi0ODYICWsbs64Fa2L5Qp+VkPPpXeBxsNsACvsJSwmfFgjhpx376iiqruzZmRJVcrQrpZNiJBKnwQdfL2yucgZ07TyLNHRnA3BauCbwMTx4nlS8vMJ3j2itI30BiNIO3WTaHzE4MApPr/P0RqajLKzuczkabeCV8Pu7vj1NZaAa1cQtehBWLlBdmCOGenLeNwGm6VM0CYf9P2D9B003y40w6QGEn/eh9Jyue3QOBp1wgeypi4DMrs2fWHzyIubQBpLAXQNo5+a+2jWRekO6eDUoiRgSD/JkFxZWXpzhZPyp7lQ3B1JOvFSNrH7Z7+majij0OrZIe4aNShq8mS', 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indeks untuk tabel `data_note`
+--
+ALTER TABLE `data_note`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
+
+--
+-- AUTO_INCREMENT untuk tabel `data_note`
+--
+ALTER TABLE `data_note`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

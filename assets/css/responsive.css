@@ -1,0 +1,58 @@
+@media all and (max-width: 1000px) {
+
+    .note-editor.note-airframe .note-editing-area .note-editable,
+    .note-editor.note-frame .note-editing-area .note-editable {
+        min-height: 400px;
+    }
+
+    .right-content {
+        min-height: 750px;
+    }
+
+    .footer {
+        width: 100%;
+        margin-left: 0px;
+    }
+}
+
+@media all and (max-width: 670px) {
+    #login-content {
+        min-height: 650px;
+    }
+    .main-login {
+        height: 630px;
+    }    
+    .right-main-content {
+        margin: 1rem 0.7rem;
+    }
+    .left-content {
+        width: 250px;
+    }
+    .right-content {
+        width: calc(100% + 250px);
+        margin-left: 250px;
+    }
+    .cari-note input {
+        width: 80%;
+    }
+    .list-title span {
+        width: 185px;
+    }
+    .left-content-footer {
+        width: 245px;
+    }
+    .main-login-content{
+        margin: 0 1rem;
+    }
+    .right-login-box{
+        display: none;
+    }
+    .main-login-content-layer {
+        width: 90%;
+        margin: 0 1rem;
+        transform: rotate(-4deg);
+    }
+    ol, ul {
+        padding-left: 0rem;
+    }
+}

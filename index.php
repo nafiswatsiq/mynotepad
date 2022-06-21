@@ -87,14 +87,14 @@ if($status == "login_user"){
                                     </div>
                                 </div>
                             </li>
-<script>
-    var Cdarkmode = '<?php echo $_COOKIE['darkmode']; ?>';
-    if(Cdarkmode == "on"){
-        $('input[type=checkbox][name=darkMode]').attr("checked", "checked");
-        $( "#bg-body" ).addClass( "dark-theme" );
-        document.getElementById('toggle5').value = "on";
-    };
-</script>
+                            <script>
+                                var Cdarkmode = '<?php echo $_COOKIE['darkmode']; ?>';
+                                if(Cdarkmode == "on"){
+                                    $('input[type=checkbox][name=darkMode]').attr("checked", "checked");
+                                    $( "#bg-body" ).addClass( "dark-theme" );
+                                    document.getElementById('toggle5').value = "on";
+                                };
+                            </script>
                         </ul>
                     </div>
                 </div>
@@ -263,9 +263,38 @@ if($status == "login_user"){
     <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $('#summernote').summernote();
+        $('#summernote').summernote({
+          callbacks: {
+              onImageUpload: function(files) {
+                  for(let i=0; i < files.length; i++) {
+                      $.upload(files[i]);
+                  }
+              }
+          },
+        //   height: 300,
         });
+
+        $.upload = function (file) {
+          let out = new FormData();
+          out.append('file', file, file.name);
+        
+          $.ajax({
+              method: 'POST',
+              url: 'proses/uploadImg.php',
+              contentType: false,
+              cache: false,
+              processData: false,
+              data: out,
+              success: function(url) {
+                // $('#summernote').summernote("insertImage", url, 'filename');
+                var image = $('<img>').attr('src', url);
+                $('#summernote').summernote("insertNode", image[0]);
+              },
+              error: function (jqXHR, textStatus, errorThrown) {
+                  console.error(textStatus + " " + errorThrown);
+              }
+          });
+        };
     </script>
     <script>
         let sidebar = document.querySelector(".left-content");

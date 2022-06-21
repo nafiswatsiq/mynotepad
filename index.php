@@ -286,9 +286,13 @@ if($status == "login_user"){
               processData: false,
               data: out,
               success: function(url) {
-                // $('#summernote').summernote("insertImage", url, 'filename');
-                var image = $('<img>').attr('src', url);
-                $('#summernote').summernote("insertNode", image[0]);
+                if(url == 'larger'){
+                    alert("Gambar terlalu besar, maksimal 1MB")
+                }else{
+                    // $('#summernote').summernote("insertImage", url, 'filename');
+                    var image = $('<img>').attr('src', url);
+                    $('#summernote').summernote("insertNode", image[0]);
+                }
               },
               error: function (jqXHR, textStatus, errorThrown) {
                   console.error(textStatus + " " + errorThrown);

@@ -734,3 +734,7 @@ input:not(:placeholder-shown)+span {
 	transform: translateX(1.5rem);
 	border: 2px solid rgb(70, 134, 255);
 }
+
+.body-public{
+    min-height: 95vh;
+}

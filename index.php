@@ -173,7 +173,7 @@ if($status == "login_user"){
                                         Share <i class="fa fa-share" aria-hidden="true"></i>
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Make a public</a></li>
+                                        <li><a class="dropdown-item" href="#" id="makePublic">Make a public</a></li>
                                         <li><a class="dropdown-item" href="#">Facebook</a></li>
                                         <li><a class="dropdown-item" href="#">Twitter</a></li>
                                     </ul>
@@ -353,6 +353,22 @@ if($status == "login_user"){
                 var getData = $( "input[type=search]" ).val();
                 $('#list_title').load("proses/list_title.php?cari="+ getData);
                 return false;
+            });
+        });
+
+        $('#makePublic').click(function() {
+            var idNote = '<?php echo $_GET['note'] ?>';
+            $(".loading-screen").show();
+            $.ajax({
+                url: "proses/public.php",
+                type: 'POST',
+                dataType: 'JSON',
+                data:{'idNote':idNote},
+                cache: false,
+                success: function (data) {
+                    alert(data);
+                    $(".loading-screen").hide();
+                }
             });
         });
     </script>

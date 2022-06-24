@@ -1,3 +1,38 @@
+<?php
+require_once 'koneksi.php';
+if(isset($_GET['note'])){
+    $id_note = $_GET['note'];
+    $result = mysqli_query($conn, "SELECT * FROM data_note WHERE id_note = '$id_note'");
+    // enkripsi
+    $method="AES-128-CTR";
+    $key ="hanyaadmin";
+    $option=0;
+    $iv="1251632135716362";
+
+    foreach( $result as $data ) :
+        if($data['public'] == 1){
+            $encrypt = $data['encrypt'];
+            if($encrypt == 1){
+                $content = openssl_decrypt($data['content'], $method, $key, $option, $iv);
+            }else{
+                $content = $data['content'];
+            };
+        
+            $title = $data['title'];
+            $id_user = $data['id_user'];
+        }else{
+            header('location: ./login');
+        }
+    endforeach;
+
+    $get_user = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+    foreach( $get_user as $data):
+        $usr_name = $data['nama'];
+    endforeach;
+}else{
+    header('location: 404.php');
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -43,11 +78,11 @@
                 <div class="col-9 dropdown dropdown-share nav-right">
                     <a class="dropdown-toggle float-end" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="hello-name">By </span>Nafis watsiq!
+                        <span class="hello-name">By </span><?php echo $usr_name?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="proses/logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Account</a></li>
+                        <li><a class="dropdown-item" href="./login"><i class="fa fa-sign-out" aria-hidden="true"></i> Login</a></li>
+                        <li><a class="dropdown-item" href="./register"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Daftar</a></li>
                         <li>
                             <div class="dropdown-item switch-dark">
                                 <div class="toggle">
@@ -74,12 +109,12 @@
             <div class="row">
                 <div class="col-12 my-4">
                     <div class="card px-4 py-2 shadow">
-                        <span class="fw-bolder fs-5">Lorem, ipsum dolor.</span>
+                        <span class="fw-bolder fs-5"><?php echo $title ?></span>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="card px-4 py-2 shadow">
-                        Lorem, ipsum dolor.
+                        <?php echo $content ?>
                     </div>
                 </div>
             </div>

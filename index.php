@@ -166,20 +166,6 @@ if($status == "login_user"){
                                     <i class="fa fa-bars" aria-hidden="true"></i>
                                 </div>
                             </div>
-                            <div class="col-9 text-end">
-                                <div class="dropdown dropdown-share">
-                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        Share <i class="fa fa-share" aria-hidden="true"></i>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#" id="makePublic">Make a public</a></li>
-                                        <li><a class="dropdown-item" href="#">Facebook</a></li>
-                                        <li><a class="dropdown-item" href="#">Twitter</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <?php 
                         if(isset($_GET['note'])){
                             $id_note = $_GET['note'];
@@ -191,54 +177,70 @@ if($status == "login_user"){
                             $iv="1251632135716362";
                             // end
                             //kalau ini melakukan foreach atau perulangan
-                        foreach ($result as $data) :
-                            $encrypt = $data['encrypt'];
-                            if($encrypt == 1){
-                                $content_decrypt=openssl_decrypt($data['content'], $method, $key, $option, $iv);
-                            }else{
-                                $content_decrypt = $data['content'];
-                            };
-                        ?>
-                        <div class="col-12 mt-2">
-                            <input type="text" name="title" placeholder="Title" class="input-title"
-                                value="<?= $data['title'] ?>">
-                        </div>
-                        <div class="col-12 mt-3 main-ckeditor">
-                            <textarea id="summernote" name="content"><?php echo $content_decrypt;?></textarea>
-                            <div class="row">
-                                <div class="col-6">
-                                    <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
-                                </div>
-                                <div class="col-6 text-end delete-btn">
-                                    <a href="proses/delete.php?delete=<?= $data['id_note'] ?>">Delete note</a>
-                                </div>
-                                <div class="col-12">
-                                    <input type="hidden" name="idNote" value="<?= $data['id_note'] ?>">
-                                    <input class="save-btn" type="submit" value="Save">
+                            foreach ($result as $data) :
+                                $encrypt = $data['encrypt'];
+                                $is_public = $data['public'];
+                                if($encrypt == 1){
+                                    $content_decrypt=openssl_decrypt($data['content'], $method, $key, $option, $iv);
+                                }else{
+                                    $content_decrypt = $data['content'];
+                                };
+                            ?>
+                                <div class="col-9 text-end">
+                                    <div class="dropdown dropdown-share">
+                                        <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Share <i class="fa fa-share" aria-hidden="true"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                            <li><a class="dropdown-item" id="makePublic">Make a <?php echo $is_public == '0' ? 'public' : 'private'; ?></a></li>
+                                            <li><a class="dropdown-item" href="#">Facebook</a></li>
+                                            <li><a class="dropdown-item" href="#">Twitter</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <?php
-                        endforeach;
+                            <div class="col-12 mt-2">
+                                <input type="text" name="title" placeholder="Title" class="input-title"
+                                    value="<?= $data['title'] ?>">
+                            </div>
+                            <div class="col-12 mt-3 main-ckeditor">
+                                <textarea id="summernote" name="content"><?php echo $content_decrypt;?></textarea>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
+                                    </div>
+                                    <div class="col-6 text-end delete-btn">
+                                        <a href="proses/delete.php?delete=<?= $data['id_note'] ?>">Delete note</a>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="hidden" name="idNote" value="<?= $data['id_note'] ?>">
+                                        <input class="save-btn" type="submit" value="Save">
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                            endforeach;
                         }else{
                         ?>
-                        <div class="col-12 mt-2">
-                            <input type="text" name="title" placeholder="Title" class="input-title">
-                        </div>
-                        <div class="col-12 mt-3 main-ckeditor">
-                            <textarea id="summernote" name="content"></textarea>
-                            <div class="row">
-                                <div class="col-12">
-                                    <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
-                                </div>
-                                <div class="col-12">
-                                    <input type="hidden" name="idNote" value="">
-                                    <input class="save-btn" type="submit" value="Save">
+                            <div class="col-12 mt-2">
+                                <input type="text" name="title" placeholder="Title" class="input-title">
+                            </div>
+                            <div class="col-12 mt-3 main-ckeditor">
+                                <textarea id="summernote" name="content"></textarea>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="hidden" name="idNote" value="">
+                                        <input class="save-btn" type="submit" value="Save">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         <?php 
-                    }?>
+                        }
+                        ?>
                     </div>
                 </form>
             </div>
@@ -308,25 +310,34 @@ if($status == "login_user"){
             sidebar.classList.toggle("left-close");
         });
     </script>
-        <script>
-            let dark_mode = document.querySelector("#bg-body");
-            let darkBtn = document.querySelector("#toggle5");
-            darkBtn.addEventListener("click", () => {
-                var valDark = document.getElementById('toggle5').value;
-                console.log(valDark);
-                if (valDark == "off"){
-	                document.getElementById('toggle5').value = "on";
-                    $( "#bg-body" ).addClass( "dark-theme" );
-                    // cookies
-                    document.cookie = "darkmode=on; expires=Thu, 31 Dec 2040 12:00:00 UTC";
-                }else{
-                    document.getElementById('toggle5').value = "off";
-                    $( "#bg-body" ).removeClass( "dark-theme" );
-                    document.cookie = "darkmode=off; expires=Thu, 31 Dec 2040 12:00:00 UTC";
-                }
+    <script>
+        let dark_mode = document.querySelector("#bg-body");
+        let darkBtn = document.querySelector("#toggle5");
+        darkBtn.addEventListener("click", () => {
+            var valDark = document.getElementById('toggle5').value;
+            console.log(valDark);
+            if (valDark == "off"){
+	            document.getElementById('toggle5').value = "on";
+                $( "#bg-body" ).addClass( "dark-theme" );
+                // cookies
+                document.cookie = "darkmode=on; expires=Thu, 31 Dec 2040 12:00:00 UTC";
+            }else{
+                document.getElementById('toggle5').value = "off";
+                $( "#bg-body" ).removeClass( "dark-theme" );
+                document.cookie = "darkmode=off; expires=Thu, 31 Dec 2040 12:00:00 UTC";
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#list_title').load("proses/list_title.php");
+            $("#btn_cari").click(function () {
+                var getData = $( "input[type=search]" ).val();
+                $('#list_title').load("proses/list_title.php?cari="+ getData);
+                return false;
             });
-        </script>
-
+        });
+    </script>
     <script type="text/javascript">
         $( "#form" ).submit(function( event ) {
             $(".loading-screen").show();
@@ -347,15 +358,6 @@ if($status == "login_user"){
             }; ?>
         });
 
-        $(document).ready(function () {
-        $('#list_title').load("proses/list_title.php");
-            $("#btn_cari").click(function () {
-                var getData = $( "input[type=search]" ).val();
-                $('#list_title').load("proses/list_title.php?cari="+ getData);
-                return false;
-            });
-        });
-
         $('#makePublic').click(function() {
             var idNote = '<?php echo $_GET['note'] ?>';
             $(".loading-screen").show();
@@ -366,7 +368,11 @@ if($status == "login_user"){
                 data:{'idNote':idNote},
                 cache: false,
                 success: function (data) {
-                    alert(data);
+                    if(data == 1){
+                        $( "#makePublic" ).html( "<span>Make a private</span>" );
+                    }else{
+                        $( "#makePublic" ).html( "<span>Make a public</span>" );
+                    }
                     $(".loading-screen").hide();
                 }
             });

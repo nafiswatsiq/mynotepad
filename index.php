@@ -1,6 +1,6 @@
 <?php
 session_start();
-$url = "https://" . $_SERVER['HTTP_HOST'];
+$url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
 require_once 'koneksi.php';
 
 $user   = $_SESSION['nama'];

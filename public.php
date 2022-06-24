@@ -20,14 +20,18 @@ if(isset($_GET['note'])){
         
             $title = $data['title'];
             $id_user = $data['id_user'];
-        }else{
-            header('location: ./login');
-        }
-    endforeach;
+            $is_public = "yes";
 
-    $get_user = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
-    foreach( $get_user as $data):
-        $usr_name = $data['nama'];
+            $get_user = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+            foreach( $get_user as $data_user):
+                $usr_name = $data_user['nama'];
+            endforeach;
+        }else{
+            $content = 'Content Private';
+            $title = 'Title Private';
+            $usr_name = 'Anonymous';
+            $is_public = "no";
+        }
     endforeach;
 }else{
     header('location: 404.php');
@@ -137,6 +141,7 @@ if(isset($_GET['note'])){
     </section>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
     <script>
         let dark_mode = document.querySelector("#bg-body");
         let darkBtn = document.querySelector("#toggle5");
@@ -154,6 +159,15 @@ if(isset($_GET['note'])){
                 document.cookie = "darkmode=off; expires=Thu, 31 Dec 2040 12:00:00 UTC";
             }
         });
+    </script>
+    <script>
+        if('<?php echo $is_public ?>' == 'no'){
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Something went wrong!',
+            })
+        }
     </script>
 </body>
 </html>

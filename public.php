@@ -1,5 +1,7 @@
 <?php
 require_once 'koneksi.php';
+$get_cookie= $_COOKIE['IDUSR'];
+
 if(isset($_GET['note'])){
     $id_note = $_GET['note'];
     $result = mysqli_query($conn, "SELECT * FROM data_note WHERE id_note = '$id_note'");
@@ -9,7 +11,8 @@ if(isset($_GET['note'])){
     $option=0;
     $iv="1251632135716362";
 
-    if($result){
+    $cek = mysqli_num_rows($result);
+    if($cek > 0){
         foreach( $result as $data ) :
             if($data['public'] == 1){
                 $encrypt = $data['encrypt'];
@@ -38,7 +41,7 @@ if(isset($_GET['note'])){
         header('location: ./404');
     }
 }else{
-    header('location: 404.php');
+    header('location: ./404');
 }
 ?>
 <!doctype html>
@@ -89,8 +92,8 @@ if(isset($_GET['note'])){
                         <span class="hello-name">By </span><?php echo $usr_name?>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="./login"><i class="fa fa-sign-out" aria-hidden="true"></i> Login</a></li>
-                        <li><a class="dropdown-item" href="./register"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Daftar</a></li>
+                        <li><a class="dropdown-item" href="./<?php echo isset($get_cookie) ? 'proses/logout': 'login' ?>"><i class="fa fa-sign-out" aria-hidden="true"></i> <?php echo isset($get_cookie) ? 'Logout': 'Login' ?></a></li>
+                        <li><a class="dropdown-item" href="./<?php echo isset($get_cookie) ? '#': 'register' ?>"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?php echo isset($get_cookie) ? 'Account': 'Daftar' ?></a></li>
                         <li>
                             <div class="dropdown-item switch-dark">
                                 <div class="toggle">

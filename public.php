@@ -9,30 +9,34 @@ if(isset($_GET['note'])){
     $option=0;
     $iv="1251632135716362";
 
-    foreach( $result as $data ) :
-        if($data['public'] == 1){
-            $encrypt = $data['encrypt'];
-            if($encrypt == 1){
-                $content = openssl_decrypt($data['content'], $method, $key, $option, $iv);
+    if($result){
+        foreach( $result as $data ) :
+            if($data['public'] == 1){
+                $encrypt = $data['encrypt'];
+                if($encrypt == 1){
+                    $content = openssl_decrypt($data['content'], $method, $key, $option, $iv);
+                }else{
+                    $content = $data['content'];
+                };
+            
+                $title = $data['title'];
+                $id_user = $data['id_user'];
+                $is_public = "yes";
+    
+                $get_user = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
+                foreach( $get_user as $data_user):
+                    $usr_name = $data_user['nama'];
+                endforeach;
             }else{
-                $content = $data['content'];
-            };
-        
-            $title = $data['title'];
-            $id_user = $data['id_user'];
-            $is_public = "yes";
-
-            $get_user = mysqli_query($conn, "SELECT * FROM user WHERE id_user = '$id_user'");
-            foreach( $get_user as $data_user):
-                $usr_name = $data_user['nama'];
-            endforeach;
-        }else{
-            $content = 'Content Private';
-            $title = 'Title Private';
-            $usr_name = 'Anonymous';
-            $is_public = "no";
-        }
-    endforeach;
+                $content = 'Content Private';
+                $title = 'Title Private';
+                $usr_name = 'Anonymous';
+                $is_public = "no";
+            }
+        endforeach;
+    }else{
+        header('location: ./404');
+    }
 }else{
     header('location: 404.php');
 }

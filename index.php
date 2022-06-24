@@ -194,6 +194,10 @@ if($status == "login_user"){
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li><a class="dropdown-item" id="makePublic">Make a <?php echo $is_public == '0' ? 'public' : 'private'; ?></a></li>
+                                            <li id="copyLink">
+                                                <?php echo $is_public == '1' ? '<a class="dropdown-item" onclick="copyLink()">Copy Link</a>' : ''; ?>
+                                                <input type="text" id="linkShare" name="" value="<?php echo $url ?>/public?note=<?php echo $_GET['note'] ?>" style="display: none;">
+                                            </li>
                                             <li><a class="dropdown-item" href="#">Facebook</a></li>
                                             <li><a class="dropdown-item" href="#">Twitter</a></li>
                                         </ul>
@@ -263,7 +267,7 @@ if($status == "login_user"){
     </section>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
     <script>
         $('#summernote').summernote({
           callbacks: {
@@ -370,13 +374,32 @@ if($status == "login_user"){
                 success: function (data) {
                     if(data == 1){
                         $( "#makePublic" ).html( "<span>Make a private</span>" );
+                        $( "#copyLink" ).html( `<a class="dropdown-item" onclick="copyLink()">Copy Link</a>`);
                     }else{
                         $( "#makePublic" ).html( "<span>Make a public</span>" );
+                        $( "#copyLink" ).html( ``);
                     }
                     $(".loading-screen").hide();
                 }
             });
         });
+    </script>
+    <script>
+        function copyLink(){
+            var copyText = document.getElementById("linkShare");
+
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+            navigator.clipboard.writeText(copyText.value);
+
+            Swal.fire({
+              icon: 'success',
+              title: 'Suksess',
+              text: 'Link Berhasil disalin',
+              timer: 1500
+            })
+        }
     </script>
     <script>
         if(<?php echo $encrypt; ?> == 1){

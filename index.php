@@ -196,8 +196,8 @@ if($status == "login_user"){
                                             <li><a class="dropdown-item" id="makePublic">Make a <?php echo $is_public == '0' ? 'public' : 'private'; ?></a></li>
                                             <li id="copyLink">
                                                 <?php echo $is_public == '1' ? '<a class="dropdown-item" onclick="copyLink()">Copy Link</a>' : ''; ?>
-                                                <input type="text" id="linkShare" name="" value="<?php echo $url ?>/public?note=<?php echo $_GET['note'] ?>" style="display: none;">
                                             </li>
+                                            <input type="text" id="linkShare" name="" value="<?php echo $url ?>/public?note=<?php echo $_GET['note'] ?>" style="display: none;">
                                             <li><a class="dropdown-item" href="#">Facebook</a></li>
                                             <li><a class="dropdown-item" href="#">Twitter</a></li>
                                         </ul>

@@ -322,7 +322,7 @@ if($status == "login_user"){
         };
 
         function deleteSNImage(src) {
-            let image = src.replace("http://localhost/notepad/", "");
+            let image = src.replace("<?php echo $url ?>", "");
             $.ajax({
                 data: {images : image},
                 type: "POST",

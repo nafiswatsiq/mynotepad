@@ -11,7 +11,7 @@ if( $_FILES['file']['size'] >= 1000000){
       $location = $_FILES["file"]["tmp_name"];
       move_uploaded_file($location, $destination);
 
-      echo $url.'notepad/assets/images/' . $filename;//change this URL
+      echo $url.'assets/images/' . $filename;//change this URL
 
    } else {
       echo  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];

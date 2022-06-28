@@ -38,6 +38,7 @@ if($status == "login_user"){
     <script src="assets/vendors/Lottie/lottie-player.js"></script>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/vendors/summernote/summernote-lite.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css">
 
 
     <link rel="icon" type="image/png" href="img/logo2.png">
@@ -228,17 +229,21 @@ if($status == "login_user"){
                         }else{
                         ?>
                             <div class="col-12 mt-2">
-                                <input type="text" name="title" placeholder="Title" class="input-title">
+                                <input type="text" name="title" placeholder="Title" class="input-title" id="input-title">
                             </div>
                             <div class="col-12 mt-3 main-ckeditor">
-                                <textarea id="summernote" name="content"></textarea>
+                                <div id="textarea">
+                                    <textarea id="summernote" name="content"></textarea>
+                                </div>
                                 <div class="row">
                                     <div class="col-12">
                                         <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden" name="idNote" value="">
-                                        <input class="save-btn" type="submit" value="Save">
+                                        <div id="btn-save" class="d-inline-flex">
+                                            <input class="save-btn" type="submit" value="Save">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -269,6 +274,44 @@ if($status == "login_user"){
     <script src="assets/js/keySave.js"></script>
     <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+    <script>
+    const driver = new Driver();
+    // Define the steps for introduction
+    driver.defineSteps([
+      {
+        element: '#input-title',
+        popover: {
+        //   className: 'first-step-popover-class',
+          title: 'Title',
+          description: 'Input title note here',
+          position: 'bottom'
+        }
+      },
+      {
+        element: '#textarea',
+        popover: {
+          title: 'Writing area',
+          description: 'Write your note here',
+          position: 'top'
+        }
+      },
+      {
+        element: '#btn-save',
+        popover: {
+          title: 'Save',
+          description: "don't forget to save note or use `ctrl+s` to save",
+          position: 'top'
+        }
+      },
+    ]);
+    // Start the introduction
+    if (!localStorage.getItem('introduction')) {
+        driver.start();
+    
+        localStorage.setItem('introduction', true)
+    }
+    </script>
     <script>
         $('#summernote').summernote({
           callbacks: {
@@ -281,7 +324,7 @@ if($status == "login_user"){
                 deleteSNImage(target[0].src);
               }
           },
-        //   height: 300,
+          height: 500,
         });
 
         $.upload = function (file) {

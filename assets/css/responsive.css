@@ -1,9 +1,9 @@
 @media all and (max-width: 1000px) {
-
+/* 
     .note-editor.note-airframe .note-editing-area .note-editable,
     .note-editor.note-frame .note-editing-area .note-editable {
         min-height: 400px;
-    }
+    } */
 
     .right-content {
         min-height: 750px;

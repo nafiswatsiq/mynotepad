@@ -266,6 +266,7 @@ if($status == "login_user"){
         </div>
     </section>
     <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="assets/js/keySave.js"></script>
     <script src="assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.18/dist/sweetalert2.all.min.js"></script>
     <script>

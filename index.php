@@ -324,7 +324,7 @@ if($status == "login_user"){
                 deleteSNImage(target[0].src);
               }
           },
-          height: 500,
+          height: 600,
         });
 
         $.upload = function (file) {

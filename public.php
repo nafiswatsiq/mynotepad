@@ -116,7 +116,7 @@ if(isset($_GET['note'])){
         </div>
     </nav>
     <section id="body" class="body-public">
-        <div class="container mt-5">
+        <div class="container my-5">
             <div class="row">
                 <div class="col-12 my-4">
                     <div class="card px-4 py-2 shadow">
@@ -129,6 +129,7 @@ if(isset($_GET['note'])){
                     </div>
                 </div>
             </div>
+            <a href="./proses/printPdf?note=<?php echo $_GET['note']?>" class="btn btn-primary my-4">Download</a>
         </div>
     </section>
     <section id="footer">

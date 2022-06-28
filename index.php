@@ -275,6 +275,9 @@ if($status == "login_user"){
                   for(let i=0; i < files.length; i++) {
                       $.upload(files[i]);
                   }
+              },
+              onMediaDelete : function(target) {
+                deleteSNImage(target[0].src);
               }
           },
         //   height: 300,
@@ -298,6 +301,18 @@ if($status == "login_user"){
                     // $('#summernote').summernote("insertImage", url, 'filename');
                     var image = $('<img>').attr('src', url);
                     $('#summernote').summernote("insertNode", image[0]);
+
+                    $(".loading-screen").show();
+                    var dataForm = $('#form').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: "proses/save.php",
+                        data: dataForm,
+                        cache: false,
+                        success: function (data) {
+                            $(".loading-screen").hide();
+                        }
+                    });
                 }
               },
               error: function (jqXHR, textStatus, errorThrown) {
@@ -305,6 +320,29 @@ if($status == "login_user"){
               }
           });
         };
+
+        function deleteSNImage(src) {
+            let image = src.replace("http://localhost/notepad/", "");
+            $.ajax({
+                data: {images : image},
+                type: "POST",
+                url: "proses/deleteImg.php", 
+                cache: false,
+                success: function(res) {
+                    $(".loading-screen").show();
+                    var dataForm = $('#form').serialize();
+                    $.ajax({
+                        type: 'POST',
+                        url: "proses/save.php",
+                        data: dataForm,
+                        cache: false,
+                        success: function (data) {
+                            $(".loading-screen").hide();
+                        }
+                    });
+                }
+            });
+        }
     </script>
     <script>
         let sidebar = document.querySelector(".left-content");

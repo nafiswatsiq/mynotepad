@@ -16,4 +16,6 @@ if( $_FILES['file']['size'] >= 1000000){
    } else {
       echo  $message = 'Ooops!  Your upload triggered the following error:  '.$_FILES['file']['error'];
    }
+}else{
+   header('location: ../404');
 }

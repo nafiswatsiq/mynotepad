@@ -125,6 +125,12 @@ if($status == "login_user"){
                             </button>
                         </form>
                     </div>
+                    <a href="calendar.php" class="col-12 text-decoration-none color-white mb-2">
+                        <div class="list-title">
+                            <span>Kalender</span>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+                    </a>
                     <a href="./" class="col-12 text-decoration-none color-white mb-2">
                         <div class="list-title">
                             <!-- active-list -->

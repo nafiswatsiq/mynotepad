@@ -3,19 +3,35 @@ session_start();
 require_once '../koneksi.php';
 $id_user = $_SESSION['id_user'];
 
-$schedule = json_decode($_POST['schedule'], true);
-// // $schedule = json_encode($schedule, true);
+$id     = json_encode($_POST['id'], true);
+$title  = json_encode($_POST['title'], true);
+$start  = json_encode($_POST['start'], true);
+$end    = json_encode($_POST['end'], true);
 
-echo $schedule;
+echo $start;
 // echo 1;
 
-// $jsonobj = '{"Peter":35,"Ben":37,"Joe":43}';
+// $jsonobj = '
+// { "id": 1,
+//   "name": "nafis watsiq",
+//   "data": {
+//             "tgl" : 12,
+//             "umur" : 20
+//           }
+// }';
 
 // $p = json_decode($jsonobj, true);
 
 // // $d = json_encode($p);
 
-// echo $p['Ben'];
+// var_dump($p['data']['umur']);
+// echo $p['data']['umur'];
+
+// echo '<br>';
+
+// foreach ($p as $data){
+//   echo $data;
+// };
 
 // echo "</br>";
 

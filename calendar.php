@@ -566,24 +566,20 @@ session_start();
         }
 
         cal.createSchedules([schedule]);
-        
+        console.log(schedule);
         // save
         $.ajax({
             url: "proses/calendar.php",
             type: 'POST',
             dataType: 'JSON',
-            data:{'schedule': schedule},
+            data:{'id'    : schedule.id,
+                  'title' : schedule.title,
+                  'start' : schedule.start,
+                  'end'   : schedule.end,
+                  },
             cache: false,
             success: function (data) {
-              alert(data);
-                // if(data == 1){
-                //     $( "#makePublic" ).html( "<span>Make a private</span>" );
-                //     $( "#copyLink" ).html( `<a class="dropdown-item" onclick="copyLink()">Copy Link</a>`);
-                // }else{
-                //     $( "#makePublic" ).html( "<span>Make a public</span>" );
-                //     $( "#copyLink" ).html( ``);
-                // }
-                // $(".loading-screen").hide();
+              console.log(data);
             }
         });
 

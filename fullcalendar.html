@@ -37,7 +37,10 @@
           <div class="event-body"></div>
         </div>
         <div class="modal-footer d-flex justify-content-between">
-          <button type="button" class="btn btn-outline-secondary border" data-dismiss="modal" id="modalEdit">Edit</button>
+          <div>
+            <button type="button" class="btn btn-outline-secondary border" data-dismiss="modal" id="btnEditEvent" onclick="">Edit</button>
+            <button type="button" class="btn btn-outline-secondary border" data-dismiss="modal">Delete</button>
+          </div>
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -62,26 +65,6 @@
               <label>Event Description</label>
               <textarea class="form-control" name="edesc"></textarea>
             </div>
-            <!-- <div class="form-group">
-              <label>Event Color</label>
-              <select class="form-control" name="ecolor">
-                <option value="fc-bg-default">default <div class="option-bg-default"></div></option>
-                <option value="fc-bg-blue">fc-bg-blue</option>
-                <option value="fc-bg-lightgreen">fc-bg-lightgreen</option>
-                <option value="fc-bg-pinkred">fc-bg-pinkred</option>
-                <option value="fc-bg-deepskyblue">fc-bg-deepskyblue</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Event Icon</label>
-              <select class="form-control" name="eicon">
-                <option value="circle">circle</option>
-                <option value="cog">cog</option>
-                <option value="group">group</option>
-                <option value="suitcase">suitcase</option>
-                <option value="calendar">calendar</option>
-              </select>
-            </div> -->
             <div class="row">
               <div class="col-6">
                 <div class="btn-group mt-3 w-100 dropdown-event" id="eventColor">
@@ -158,7 +141,115 @@
               </div>
 
             </div>
-            
+
+          </div>
+          <input type="hidden" name="ecolor" value="fc-bg-default">
+          <input type="hidden" name="eicon" value="circle">
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal edit-->
+  <div id="modalEditEvent" class="modal modal-top fade calendar-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <form id="add-event">
+          <div class="modal-body">
+            <h4>Edit Event Detail</h4>
+            <div class="form-group">
+              <label>Event name</label>
+              <input type="text" class="form-control" name="ename">
+            </div>
+            <div class="form-group">
+              <label>Event Date</label>
+              <input type='text' class="datetimepicker form-control" name="edate">
+            </div>
+            <div class="form-group">
+              <label>Event Description</label>
+              <textarea class="form-control" name="edesc"></textarea>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="btn-group mt-3 w-100 dropdown-event" id="eventColor">
+                  <button class="btn border bg-white btn-sm dropdown-toggle d-flex align-items-center justify-content-between" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Event Color
+                  </button>
+                  <div class="dropdown-menu">
+                    <button type="button" class="dropdown-item" onclick="eventColor('default')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg default me-2"></div> Default
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventColor('deepskyblue')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg deepskyblue me-2"></div> Deep sky blue
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventColor('pinkred')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg pinkred me-2"></div> Pink red
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventColor('lightgreen')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg lightgreen me-2"></div> Light green
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventColor('blue')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg blue me-2"></div> Blue
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventColor('cake')">
+                      <div class="d-flex align-items-center">
+                        <div class="option-bg cake me-2"></div> Cake
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="btn-group mt-3 w-100 dropdown-event" id="eventIcon">
+                  <button class="btn border bg-white btn-sm dropdown-toggle d-flex align-items-center justify-content-between" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Event Icon
+                  </button>
+                  <div class="dropdown-menu">
+                    <button type="button" class="dropdown-item" onclick="eventIcon('circle')">
+                      <div class="d-flex align-items-center">
+                        <i class='fa fa-circle me-2'></i> circle
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventIcon('cog')">
+                      <div class="d-flex align-items-center">
+                        <i class='fa fa-cog me-2'></i> cog
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventIcon('group')">
+                      <div class="d-flex align-items-center">
+                        <i class='fa fa-group me-2'></i> group
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventIcon('suitcase')">
+                      <div class="d-flex align-items-center">
+                        <i class='fa fa-suitcase me-2'></i> suitcase
+                      </div>
+                    </button>
+                    <button type="button" class="dropdown-item" onclick="eventIcon('calendar')">
+                      <div class="d-flex align-items-center">
+                        <i class='fa fa-calendar me-2'></i> calendar
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
           <input type="hidden" name="ecolor" value="fc-bg-default">
           <input type="hidden" name="eicon" value="circle">
@@ -353,7 +444,8 @@
             jQuery('.event-icon').html("<i class='fa fa-" + event.icon + "'></i>");
             jQuery('.event-title').html(event.title);
             jQuery('.event-body').html(event.description);
-            jQuery('.eventUrl').attr('href', event.url);
+            // jQuery('.eventUrl').attr('href', event.url);
+            jQuery('#btnEditEvent').attr('onclick', `editEvent('${event.title}', '${event.description}', '${event.start}', '${event.end}', '${event.className}', '${event.icon}')`);
             jQuery('#modal-view-event').modal();
           },
         })
@@ -361,13 +453,23 @@
 
     })(jQuery);
 
+    function editEvent(title, description, start, end, className, icon) {
+      console.log(end);
+      $('#modalEditEvent input[name="ename"]').val(title);
+      $('#modalEditEvent input[name="edate"]').val(start +'-'+ end);
+      $('#modalEditEvent textarea[name="edesc"]').val(description);
+      $('#modalEditEvent input[name="ecolor"]').val(className);
+      $('#modalEditEvent input[name="eicon"]').val(icon);
+      $('#modalEditEvent').modal('show');
+    }
+
     function eventColor(color) {
       $('#eventColor button.dropdown-toggle').html(`
         <div class="d-flex align-items-center">
           <div class="option-bg ${color} me-2"></div> ${color}
         </div>
       `);
-        
+
       $('#add-event input[name="ecolor"]').val('fc-bg-' + color);
     }
 
@@ -377,7 +479,7 @@
           <i class='fa fa-${icon} me-2'></i> ${icon}
         </div>
       `);
-        
+
       $('#add-event input[name="eicon"]').val(icon);
     }
   </script>

@@ -9,42 +9,43 @@ $desc   = $_POST['edesc'];
 $color  = $_POST['ecolor'];
 $icon   = $_POST['eicon'];
 
-echo $name;
-echo '<br>';
-echo $date;
-echo '<br>';
-echo $desc;
-echo '<br>';
-echo $color;
-echo '<br>';
-echo $icon; 
-echo '<br>';
-$str = $date;
-$explode = explode(" - ",$str);
+// format date
+$explode = explode(" - ",$date);
 
-// $date_start = $explode[0];
-$date_start = date('Y-m-d H:i:s');
-$date_end = $explode[1];
+$check_date = count($explode);
 
-$ex_end = explode("/", $date_end);
-// echo $date_end;
-echo implode("-", $ex_end);
+if($check_date == 1){
+  function format_date($date){
+    $date = explode("/", $date);
+    $date = implode("-", $date);
+    $date = explode(" ", $date);
+    $date = implode("-", $date);
+    $date = str_replace('-pm', '', $date);
+    $date = explode("-", $date);
+    $res_date = $date[2].'-'.$date[0].'-'.$date[1].' '.$date[3].':00';
+    return $res_date;
+  };
+  
+  $date_start = format_date($explode[0]);
+  $date_end = format_date($explode[0]);
+}else{
+  function format_date($date){
+    $date = explode("/", $date);
+    $date = implode("-", $date);
+    $date = explode(" ", $date);
+    $date = implode("-", $date);
+    $date = str_replace('-pm', '', $date);
+    $date = explode("-", $date);
+    $res_date = $date[2].'-'.$date[0].'-'.$date[1].' '.$date[3].':00';
+    return $res_date;
+  };
 
-// $save = mysqli_query($conn, "INSERT INTO `calendar`(`id`, 
-//                                                     `id_user`, 
-//                                                     `name`, 
-//                                                     `description`, 
-//                                                     `color`, 
-//                                                     `icon`, 
-//                                                     `start`, 
-//                                                     `end`
-//                                                     ) VALUES (
-//                                                     '',
-//                                                     '$id_user',
-//                                                     '$name',
-//                                                     '$desc',
-//                                                     '$color',
-//                                                     '$icon',
-//                                                     '$date_start',
-//                                                     '$date_end'
-//                                                     )");
+  $date_start = format_date($explode[0]);
+  $date_end = format_date($explode[1]);
+}
+
+// insert database
+$save = mysqli_query($conn, "INSERT INTO `calendar`(`id`, `id_user`, `name`, `description`, `color`, `icon`, `start`, `end`) 
+                              VALUES ('','$id_user','$name','$desc','$color','$icon','$date_start','$date_end')");
+
+header('Location: ' . $_SERVER['HTTP_REFERER']);

@@ -1,9 +1,9 @@
-    /*!
+/*!
  * FullCalendar v3.9.0
  * Docs & License: https://fullcalendar.io/
  * (c) 2018 Adam Shaw
  */
- .fc {
+.fc {
   direction: ltr;
   text-align: left;
 }
@@ -22,19 +22,19 @@ body .fc {
 .fc-highlight {
   /* when user is selecting cells */
   background: #bce8f1;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .fc-bgevent {
   /* default look for background events */
   background: #8fdf82;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 .fc-nonbusiness {
   /* default look for non-business-hours areas */
   /* will inherit .fc-bgevent's styles */
-  background: rgba(52, 40, 104, .05);
+  background: rgba(52, 40, 104, 0.05);
 }
 
 /* Buttons (styled <button> tags, normalized to work cross-browser)
@@ -47,7 +47,7 @@ body .fc {
   /* dimensions */
   margin: 0;
   height: auto;
-  padding: 0 .6em;
+  padding: 0 0.6em;
   /* text & cursor */
   font-size: 1em;
   /* normalize */
@@ -84,7 +84,7 @@ body .fc {
   position: relative;
   top: -0.05em;
   /* seems to be a good adjustment across browsers */
-  margin: 0 .2em;
+  margin: 0 0.2em;
   vertical-align: middle;
 }
 
@@ -149,13 +149,13 @@ borrowed from twitter bootstrap (http://twitter.github.com/bootstrap/)
 every button that is not first in a button group should scootch over one pixel and cover the
 previous button's border...
 */
-.fc .fc-button-group>* {
+.fc .fc-button-group > * {
   /* extra precedence b/c buttons have margin set to zero */
   float: left;
   margin: 0 0 0 -1px;
 }
 
-.fc .fc-button-group> :first-child {
+.fc .fc-button-group > :first-child {
   /* same */
   margin-left: 0;
 }
@@ -354,7 +354,7 @@ temporary rendered events).
   background: none;
   /* in case <td>s are globally styled */
   border-color: transparent;
-  padding: .5rem .5rem;
+  padding: 0.5rem 0.5rem;
 }
 
 .fc-row .fc-content-skeleton td,
@@ -376,8 +376,8 @@ temporary rendered events).
 }
 
 /* TODO: move to agenda/basic */
-.fc-scroller>.fc-day-grid,
-.fc-scroller>.fc-time-grid {
+.fc-scroller > .fc-day-grid,
+.fc-scroller > .fc-time-grid {
   position: relative;
   /* re-scope all positions */
   width: 100%;
@@ -431,7 +431,7 @@ temporary rendered events).
 }
 
 .fc-event i {
-  font-size: 20px;
+  font-size: 15px;
   margin-right: 8px;
   vertical-align: middle;
 }
@@ -460,7 +460,7 @@ temporary rendered events).
   /* the generic .fc-bg already does position */
   z-index: 1;
   background: #fff;
-  opacity: .25;
+  opacity: 0.25;
 }
 
 .fc-event .fc-content {
@@ -615,7 +615,7 @@ be a descendant of the grid when it is being dragged.
   padding: 0;
 }
 
-tr:first-child>td>.fc-day-grid-event {
+tr:first-child > td > .fc-day-grid-event {
   margin-top: 2px;
   /* a little bit more space before the first event */
 }
@@ -632,7 +632,7 @@ tr:first-child>td>.fc-day-grid-event {
   left: -1px;
   /* darkening effect */
   background: #000;
-  opacity: .25;
+  opacity: 0.25;
 }
 
 .fc-day-grid-event .fc-content {
@@ -665,7 +665,7 @@ tr:first-child>td>.fc-day-grid-event {
 /* "more" link that represents hidden events */
 a.fc-more {
   margin: 1px 3px;
-  font-size: .85em;
+  font-size: 0.85em;
   cursor: pointer;
   text-decoration: none;
 }
@@ -751,7 +751,7 @@ TODO: more distinction between this file and common.css
 
 .fc-unthemed .fc-disabled-day {
   background: #d7d7d7;
-  opacity: .3;
+  opacity: 0.3;
 }
 
 /* Icons (inline elements with styled text that mock arrow icons)
@@ -842,7 +842,7 @@ NOTE: use percentage font sizes or else old IE chokes
 }
 
 .fc-unthemed .fc-popover .fc-header .fc-close {
-  font-size: .9em;
+  font-size: 0.9em;
   margin-top: 2px;
 }
 
@@ -860,7 +860,7 @@ NOTE: use percentage font sizes or else old IE chokes
 
 /* Popover
 --------------------------------------------------------------------------------------------------*/
-.fc-popover>.ui-widget-header+.ui-widget-content {
+.fc-popover > .ui-widget-header + .ui-widget-content {
   border-top: 0;
   /* where they meet, let the header have the border */
 }
@@ -996,14 +996,14 @@ NOTE: use percentage font sizes or else old IE chokes
 }
 
 /* the things within each left/right/center section */
-.fc .fc-toolbar>*>* {
+.fc .fc-toolbar > * > * {
   /* extra precedence to override button border margins */
   float: left;
-  margin-left: .75em;
+  margin-left: 0.75em;
 }
 
 /* the first thing within each left/center/right section */
-.fc .fc-toolbar>*> :first-child {
+.fc .fc-toolbar > * > :first-child {
   /* extra precedence to override button border margins */
   margin-left: 0;
 }
@@ -1051,7 +1051,7 @@ NOTE: use percentage font sizes or else old IE chokes
 }
 
 .fc-view,
-.fc-view>table {
+.fc-view > table {
   /* so dragged elements can be above the view's main element */
   position: relative;
   z-index: 1;
@@ -1092,7 +1092,7 @@ NOTE: use percentage font sizes or else old IE chokes
 .fc-basic-view .fc-week-number,
 .fc-basic-view .fc-day-number {
   padding: 2px;
-  color: rgba(52, 40, 104, .8);
+  color: rgba(52, 40, 104, 0.8);
   font-size: 15px;
   font-weight: 400;
 }
@@ -1133,7 +1133,7 @@ NOTE: use percentage font sizes or else old IE chokes
   text-align: center;
 }
 
-.fc-basic-view td.fc-week-number>* {
+.fc-basic-view td.fc-week-number > * {
   /* work around the way we do column resizing and ensure a minimum width */
   display: inline-block;
   min-width: 1.25em;
@@ -1193,13 +1193,13 @@ NOTE: use percentage font sizes or else old IE chokes
   border: 0 hidden transparent;
 }
 
-.fc-time-grid>.fc-bg {
+.fc-time-grid > .fc-bg {
   z-index: 1;
   background: #fff;
 }
 
 .fc-time-grid .fc-slats,
-.fc-time-grid>hr {
+.fc-time-grid > hr {
   /* the <hr> AgendaView injects when grid is shorter than scroller */
   position: relative;
   z-index: 2;
@@ -1359,7 +1359,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-time-grid-event .fc-time {
-  font-size: .85em;
+  font-size: 0.85em;
   white-space: nowrap;
 }
 
@@ -1392,7 +1392,7 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-time-grid-event.fc-short .fc-title {
-  font-size: .85em;
+  font-size: 0.85em;
   /* make the title text the same size as the time */
   padding: 0;
   /* undo padding from above */
@@ -1582,7 +1582,6 @@ be a descendant of the grid when it is being dragged.
   background-color: #eee;
 }
 
-
 .fc th.fc-day-header {
   padding: 11px 7px;
   font-size: 16px;
@@ -1590,11 +1589,11 @@ be a descendant of the grid when it is being dragged.
 }
 
 .fc-day.fc-today {
-  background: rgba(52, 40, 104, .03);
+  background: rgba(52, 40, 104, 0.03);
 }
 
 .fc-day.alert-info {
-  background: rgba(52, 40, 104, .03);
+  background: rgba(52, 40, 104, 0.03);
 }
 
 .datepicker {
@@ -1602,8 +1601,8 @@ be a descendant of the grid when it is being dragged.
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
-  background: #F3F5F9;
+  font-family: "Nunito", sans-serif;
+  background: #f3f5f9;
 }
 
 .card {
@@ -1617,7 +1616,7 @@ h2 {
   font-size: 22px;
   text-align: center;
   letter-spacing: 1px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #002147;
   margin-bottom: 20px;
 }
@@ -1627,7 +1626,7 @@ h2 {
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 2.5px;
-  font-family: 'Nunito', sans-serif;
+  font-family: "Nunito", sans-serif;
   box-shadow: none !important;
   border: 0;
   padding: 10px 20px !important;
@@ -1642,20 +1641,20 @@ h2 {
   color: #ffffff;
 }
 
-.btn.btn-primary.active{
-  background: #0062CC;
+.btn.btn-primary.active {
+  background: #0062cc;
   color: #ffffff;
 }
 
 .form-group label {
   font-weight: 600;
-  letter-spacing: 0.010em;
+  letter-spacing: 0.01em;
   font-size: 18px;
   margin-bottom: 5px;
 }
 
 .modal-body {
-  background: #F3F5F9;
+  background: #f3f5f9;
   border-radius: 10px;
 }
 
@@ -1664,7 +1663,7 @@ h2 {
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 1px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #002147;
   margin-bottom: 20px;
 }
@@ -1673,7 +1672,6 @@ h2 {
   box-shadow: none;
   height: 50px;
 }
-
 
 /* related product */
 .related-product {
@@ -1729,79 +1727,79 @@ h2 {
   margin-right: 10px;
 }
 
-td.fc-event-container{
+td.fc-event-container {
   padding: 5px 10px !important;
 }
 
 /* Color */
-.fc-event.fc-bg-deepskyblue .fc-content{
+.fc-event.fc-bg-deepskyblue .fc-content {
   background: #00bfff0a;
 }
 
-.fc-bg-deepskyblue.fc-event:before{
-border-left: 3px solid #00bfff;
-border-bottom: 3px solid #00bfff;
+.fc-bg-deepskyblue.fc-event:before {
+  border-left: 3px solid #00bfff;
+  border-bottom: 3px solid #00bfff;
 }
-.fc-event.fc-bg-pinkred .fc-content{
+.fc-event.fc-bg-pinkred .fc-content {
   background: #fe2c520e;
 }
 
-.fc-bg-pinkred.fc-event:before{
-border-left: 3px solid #FE2C54;
-border-bottom: 3px solid #FE2C54;
+.fc-bg-pinkred.fc-event:before {
+  border-left: 3px solid #fe2c54;
+  border-bottom: 3px solid #fe2c54;
 }
 
-.fc-event.fc-bg-lightgreen .fc-content{
+.fc-event.fc-bg-lightgreen .fc-content {
   background: #68bb2d10;
 }
 
-.fc-bg-lightgreen.fc-event:before{
-border-left: 3px solid #69BB2D;
-border-bottom: 3px solid #69BB2D;
+.fc-bg-lightgreen.fc-event:before {
+  border-left: 3px solid #69bb2d;
+  border-bottom: 3px solid #69bb2d;
 }
 
-.fc-event.fc-bg-blue .fc-content{
+.fc-event.fc-bg-blue .fc-content {
   background: #0000ff0c;
 }
 
-.fc-bg-blue.fc-event:before{
-border-left: 3px solid #0000FF;
-border-bottom: 3px solid #0000FF;
+.fc-bg-blue.fc-event:before {
+  border-left: 3px solid #0000ff;
+  border-bottom: 3px solid #0000ff;
 }
 
-.fc-event.fc-bg-cake .fc-content{
+.fc-event.fc-bg-cake .fc-content {
   background: #f3e5ab0e;
 }
 
-.fc-bg-cake.fc-event:before{
-border-left: 3px solid #F3E5AB;
-border-bottom: 3px solid #F3E5AB;
+.fc-bg-cake.fc-event:before {
+  border-left: 3px solid #f3e5ab;
+  border-bottom: 3px solid #f3e5ab;
 }
 
-.dropdown-event .option-bg{
+.dropdown-event .option-bg {
   width: 15px;
   height: 15px;
   border-radius: 100%;
 }
-.dropdown-event .option-bg.default{
-  background-color: #5D5386;
+.dropdown-event .option-bg.default {
+  background-color: #5d5386;
 }
-.dropdown-event .option-bg.deepskyblue{
+.dropdown-event .option-bg.deepskyblue {
   background-color: #00bfff;
 }
-.dropdown-event .option-bg.pinkred{
-  background-color: #FE2C54;
+.dropdown-event .option-bg.pinkred {
+  background-color: #fe2c54;
 }
-.dropdown-event .option-bg.lightgreen{
-  background-color: #69BB2D;
+.dropdown-event .option-bg.lightgreen {
+  background-color: #69bb2d;
 }
-.dropdown-event .option-bg.blue{
-  background-color: #0000FF;
+.dropdown-event .option-bg.blue {
+  background-color: #0000ff;
 }
-.dropdown-event .option-bg.cake{
-  background-color: #F3E5AB;
+.dropdown-event .option-bg.cake {
+  background-color: #f3e5ab;
 }
 
-.dropdown-event .btn{
+.dropdown-event .btn {
   letter-spacing: normal;
 }

@@ -6,6 +6,10 @@ require_once 'koneksi.php';
 $user   = $_SESSION['nama'];
 $status = $_SESSION['status'];
 $id_user= $_COOKIE['IDUSR'];
+
+if($status != "login_user"){
+  header('location: login');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,7 +26,7 @@ $id_user= $_COOKIE['IDUSR'];
   <link href="assets/css/responsive.css" rel="stylesheet">
   <link href="assets/css/dark-theme.css" rel="stylesheet">
   <script src="assets/js/jquery-3.6.0.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/air-datepicker/2.2.3/css/datepicker.css">
   <link rel="stylesheet" href="assets/css/calendar.css">
 
@@ -65,8 +69,7 @@ $id_user= $_COOKIE['IDUSR'];
                 </div>
               </li>
               <script>
-                var Cdarkmode = '<?php echo $_COOKIE['
-                darkmode ']; ?>';
+                var Cdarkmode = '<?php echo $_COOKIE['darkmode']; ?>';
                 if (Cdarkmode == "on") {
                   $('input[type=checkbox][name=darkMode]').attr("checked", "checked");
                   $("#bg-body").addClass("dark-theme");
@@ -152,6 +155,7 @@ $id_user= $_COOKIE['IDUSR'];
               </div>
             </div>
             <div class="col-12 mt-3">
+
               <div class="p-0">
                 <div class="card">
                   <div class="card-body p-0">
@@ -243,9 +247,9 @@ $id_user= $_COOKIE['IDUSR'];
                                 Event Icon
                               </button>
                               <div class="dropdown-menu">
-                                <button type="button" class="dropdown-item" onclick="eventIcon('circle')">
+                                <button type="button" class="dropdown-item" onclick="eventIcon('circle-thin')">
                                   <div class="d-flex align-items-center">
-                                    <i class='fa fa-circle me-2'></i> circle
+                                    <i class='fa fa-circle-thin me-2'></i> circle
                                   </div>
                                 </button>
                                 <button type="button" class="dropdown-item" onclick="eventIcon('cog')">
@@ -253,9 +257,9 @@ $id_user= $_COOKIE['IDUSR'];
                                     <i class='fa fa-cog me-2'></i> cog
                                   </div>
                                 </button>
-                                <button type="button" class="dropdown-item" onclick="eventIcon('group')">
+                                <button type="button" class="dropdown-item" onclick="eventIcon('users')">
                                   <div class="d-flex align-items-center">
-                                    <i class='fa fa-group me-2'></i> group
+                                    <i class='fa fa-users me-2'></i> group
                                   </div>
                                 </button>
                                 <button type="button" class="dropdown-item" onclick="eventIcon('suitcase')">

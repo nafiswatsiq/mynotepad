@@ -1,9 +1,8 @@
 <?php
-require('../assets/vendors/fpdf184/fpdf.php');
+require('writeHtml.php');
 require_once '../koneksi.php';
 
 $id_note = $_GET['note'];
-// if(isset($id_note)){
     $result = mysqli_query($conn, "SELECT * FROM data_note WHERE id_note = '$id_note'");
     // enkripsi
     $method="AES-128-CTR";
@@ -12,7 +11,6 @@ $id_note = $_GET['note'];
     $iv="1251632135716362";
 
     $cek = mysqli_num_rows($result);
-    // if($cek > 0){
         foreach( $result as $data ) :
             if($data['public'] == 1){
                 $encrypt = $data['encrypt'];
@@ -37,51 +35,12 @@ $id_note = $_GET['note'];
                 $is_public = "no";
             }
         endforeach;
-    // }else{
-    //     header('location: ../404');
-    // }
-// }else{
-//     header('location: ../404');
-// }
 
-class PDF extends FPDF
-{
-// Page header
-function Header()
-{
-    global $title;
-    // Select Arial bold 15
-    $this->SetFont('Arial','B',15);
-    // Move to the right
-    $this->Cell(-1);
-    // Framed title
-    $this->Cell(30,10,$title,0,0,'L');
-    // Line break
-    $this->Ln(20);
-}
-
-// Page footer
-function Footer()
-{
-    // Position at 1.5 cm from bottom
-    $this->SetY(-15);
-    // Arial italic 8
-    $this->SetFont('Arial','I',8);
-    // Page number
-    $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
-}
-}
-
-// Instanciation of inherited class
-$pdf = new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetFont('Times','',12);
-// for($i=1;$i<=40;$i++)
-
-$pdf->Cell(0,10, htmlspecialchars_decode($content, ENT_QUOTES));
-
-$pdf->Output();
-header('Content-Disposition: attachment; filename="'.$title.'.pdf"');
-// header('location: '.$_SERVER['PHP_SELF']);
+        $pdf=new PDF_HTML();
+        $pdf->SetFont('Arial','',12);
+        $pdf->AddPage();
+        $pdf->WriteHTML($content);
+        $pdf->Output();
+        header('Content-Disposition: attachment; filename="'.$title.'.pdf"');
+        exit;
 ?>

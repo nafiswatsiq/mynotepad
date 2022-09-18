@@ -7,7 +7,15 @@ $user   = $_SESSION['nama'];
 $status = $_SESSION['status'];
 $id_user= $_COOKIE['IDUSR'];
 
-if($status != "login_user"){
+if(isset($_COOKIE['IDUSR'])){
+  $query_login = mysqli_query($conn, "SELECT * FROM user WHERE id_user='$id_user'");
+  foreach ($query_login as $dt) :
+      $nama   = $dt['nama'];
+  endforeach;
+  $_SESSION['nama']     = $nama;
+  $_SESSION['id_user']  = $id_user;
+  $user   = $_SESSION['nama'];
+}else if($status != "login_user"){
   header('location: login');
 }
 ?>

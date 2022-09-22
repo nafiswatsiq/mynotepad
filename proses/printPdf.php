@@ -41,6 +41,6 @@ $id_note = $_GET['note'];
         $pdf->AddPage();
         $pdf->WriteHTML($content);
         $pdf->Output();
-        header('Content-Disposition: attachment; filename="'.$title.'.pdf"');
+        // header('Content-Disposition: attachment; filename="'.$title.'.pdf"');
         exit;
 ?>

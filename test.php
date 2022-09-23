@@ -1,32 +1,15 @@
 <?php
-
-// $headers = [
-//   'accept: application/json',
-//   'Authorization: Bearer 14|OJBpDaVcZTIoggtiIH5LO2epc4Ir1UGlz9UOqyVR'
-// ];
-
-// $ch = curl_init("https://owlengine.com/api/text/translate?content=yakin%20ga%20mau%20makan%20nasi%20sambil%20salto%20di%20sawah&language_from=id&language_to=en");
-
-// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-// // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// curl_setopt($ch, CURLOPT_HEADER, true);
-
-// $response = curl_exec($ch);
-
-// curl_close($ch);
-
-// $data = json_decode($response);
-// var_dump($data);
-
-
+  include 'koneksi.php';
   $curl = curl_init();
   // OPTIONS:
   $url = "https://owlengine.com/api/text/translate?content=yakin%20ga%20mau%20makan%20nasi%20sambil%20salto%20di%20sawah&language_from=id&language_to=en";
+  
   curl_setopt($curl, CURLOPT_URL, $url);
   curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-     'Authorization: Bearer 14|OJBpDaVcZTIoggtiIH5LO2epc4Ir1UGlz9UOqyVR',
+     'Authorization: Bearer '. $API_KEY,
      'accept: application/json',
   ));
+
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
   curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
   // EXECUTE:

@@ -72,6 +72,22 @@ if($status == "login_user"){
                             N.notepad
                         </a>
                     </div>
+                    <!-- <div class="col-6 d-flex align-items-center">
+                        <div class="row w-100 justify-content-center">
+                            <div class="col-auto">
+                                <a href="">Translator</a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="">Translator</a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="">Translator</a>
+                            </div>
+                            <div class="col-auto">
+                                <a href="">Translator</a>
+                            </div>
+                        </div>
+                    </div> -->
                     <div class="col-9 dropdown dropdown-share nav-right">
                         <a class="dropdown-toggle float-end" type="button" id="dropdownMenuButton1"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -319,18 +335,65 @@ if($status == "login_user"){
     }
     </script>
     <script>
+        var rewriter = function (context) {
+          var ui = $.summernote.ui;
+                
+          // create button
+          var button = ui.button({
+            contents: '<i class="fa fa-pencil-square-o"/> Rewriter',
+            tooltip: 'Rewriter',
+            click: function () {
+                $(".loading-screen").show();
+                var data = $('#form').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: "proses/rewriter.php",
+                    data: data,
+                
+                    cache: false,
+                    success: function (res) {
+                        var jsonData = JSON.parse(res);
+                        // console.log(res);
+                        $('#summernote').summernote('reset');
+                        $(".loading-screen").hide();
+                        context.invoke('editor.insertText', jsonData);
+                    }
+                });
+                return false;
+            }
+          });
+        
+          return button.render();   // return button as jquery object
+        }
+
         $('#summernote').summernote({
-          callbacks: {
-              onImageUpload: function(files) {
-                  for(let i=0; i < files.length; i++) {
-                      $.upload(files[i]);
-                  }
-              },
-              onMediaDelete : function(target) {
-                deleteSNImage(target[0].src);
-              }
-          },
-          height: 600,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link', 'picture', 'video']],
+                ['view', ['fullscreen', 'codeview', 'help']],
+                ['tools', ['rewriter']]
+            ],
+            tabDisable: true,
+            buttons: {
+                rewriter: rewriter
+            },
+            
+            callbacks: {
+                onImageUpload: function(files) {
+                    for(let i=0; i < files.length; i++) {
+                        $.upload(files[i]);
+                    }
+                },
+                onMediaDelete : function(target) {
+                  deleteSNImage(target[0].src);
+                }
+            },
+            height: 600,
         });
 
         $.upload = function (file) {

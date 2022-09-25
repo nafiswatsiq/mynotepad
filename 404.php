@@ -7,6 +7,6 @@
     <title>404 NOT FOUND</title>
 </head>
 <body>
-    Not Found
+    Not Found <a href="./">Back</a>
 </body>
 </html>

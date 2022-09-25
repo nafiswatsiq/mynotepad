@@ -9,7 +9,7 @@
   
     $curl = curl_init();
     // OPTIONS:
-    $url = "https://owlengine.com/api/text/paraphrase?content=".$content."&language=id";
+    $url = "https://owlengine.com/api/text/summarize?content=".$content."&language=id";
     
     curl_setopt($curl, CURLOPT_URL, $url);
     curl_setopt($curl, CURLOPT_HTTPHEADER, array(
@@ -30,7 +30,7 @@
   
     $data = json_decode($result, true);
   
-    echo json_encode($data["data"]['paraphrased'], true);
+    echo json_encode($data["data"]['summarized'], true);
   }else{
     header('location: ../404');
   }

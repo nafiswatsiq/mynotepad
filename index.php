@@ -57,7 +57,7 @@ if($status == "login_user"){
         <div class="main-loading">
             <div class="loading-content">
                 <img src="img/Pulse-1.4s-200px.png" alt="loading">
-                <p class="text-center">Saving...</p>
+                <p class="text-center" id="text-loader">Saving...</p>
             </div>
         </div>
     </div>
@@ -258,8 +258,13 @@ if($status == "login_user"){
                                     <textarea id="summernote" name="content"></textarea>
                                 </div>
                                 <div class="row">
-                                    <div class="col-12">
-                                        <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <div>
+                                            <input type="checkbox" name="encrypt" id="encrypt" class="input-encrypt" value="1"><label class="label-encrypt" for="encrypt">Make it encrypt</label>
+                                        </div>
+                                        <div class="my-2">
+                                            <span><span id="character">0</span> karakter</span>
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <input type="hidden" name="idNote" value="">
@@ -343,11 +348,44 @@ if($status == "login_user"){
             contents: '<i class="fa fa-pencil-square-o"/> Rewriter',
             tooltip: 'Rewriter',
             click: function () {
+                $("#text-loader").html('please wait...');
                 $(".loading-screen").show();
                 var data = $('#form').serialize();
                 $.ajax({
                     type: 'POST',
                     url: "proses/rewriter.php",
+                    data: data,
+                
+                    cache: false,
+                    success: function (res) {
+                        var jsonData = JSON.parse(res);
+                        // console.log(res);
+                        $('#summernote').summernote('reset');
+                        $(".loading-screen").hide();
+                        context.invoke('editor.insertText', jsonData);
+                    }
+                });
+                return false;
+            }
+          });
+        
+          return button.render();   // return button as jquery object
+        }
+
+        var summarizer = function (context) {
+          var ui = $.summernote.ui;
+                
+          // create button
+          var button = ui.button({
+            contents: '<i class="fa fa-pencil-square-o"/> Summarizer',
+            tooltip: 'Summarizer',
+            click: function () {
+                $("#text-loader").html('please wait...');
+                $(".loading-screen").show();
+                var data = $('#form').serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: "proses/summarizer.php",
                     data: data,
                 
                     cache: false,
@@ -376,11 +414,12 @@ if($status == "login_user"){
                 ['table', ['table']],
                 ['insert', ['link', 'picture', 'video']],
                 ['view', ['fullscreen', 'codeview', 'help']],
-                ['tools', ['rewriter']]
+                ['tools', ['rewriter', 'summarizer']]
             ],
             tabDisable: true,
             buttons: {
-                rewriter: rewriter
+                rewriter: rewriter,
+                summarizer: summarizer
             },
             
             callbacks: {
@@ -391,6 +430,14 @@ if($status == "login_user"){
                 },
                 onMediaDelete : function(target) {
                   deleteSNImage(target[0].src);
+                },
+
+                onChange: function(contents, $editable) {
+                    let replaceOpen = contents.replace('<p>', '');
+                    let replaceClose = replaceOpen.replace('</p>', '');
+                    let length = replaceClose.length;
+                    // console.log(replaceClose);
+                    $('#character').html(length);
                 }
             },
             height: 600,
